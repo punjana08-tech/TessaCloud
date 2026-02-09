@@ -1,0 +1,57 @@
+PROJECT NAME:
+AssetTrack – Company Asset Management System
+
+
+1. Understanding of Client Requirements
+---------------------------------------
+The client requires a software system to track company-owned assets
+and identify which employee is currently responsible for each asset.
+The goal is to maintain accountability and easy visibility of assets.
+
+
+2. Creative Freedoms Taken
+--------------------------
+- Product named "AssetTrack"
+- Assumed a web-based internal system
+- Introduced admin and employee roles
+- Expanded scope to include asset history and status tracking
+
+
+3. Assumptions Made
+-------------------
+- Each asset has a unique asset ID
+- Each employee has a unique employee ID
+- One asset can be assigned to only one employee at a time
+- Assets can be reassigned
+- Admin manages assets and assignments
+- Employees can view their assigned assets
+
+
+4. Feature List
+---------------
+1. Asset Registration
+   - Add and manage company assets.
+
+2. Employee Management
+   - Add and maintain employee details.
+
+3. Asset Assignment
+   - Assign assets to employees.
+
+4. Asset Reassignment
+   - Transfer assets between employees.
+
+5. Asset Status Tracking
+   - Track asset availability and condition.
+
+6. Asset History
+   - View past assignments of assets.
+
+
+5. Questions for Next Client Meeting
+------------------------------------
+1. What types of assets should be tracked?
+2. Should asset condition tracking be mandatory?
+3. Do employees need asset request functionality?
+4. Is asset return confirmation required?
+5. Are reports required for management?
