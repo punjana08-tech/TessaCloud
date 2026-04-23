@@ -22,13 +22,13 @@ export default defineConfig({
       },
     },
     output: {
-      workspace: apiClientReactSrc,
+      workspace: apiClientReactSrc, 
       target: "generated",
       client: "react-query",
       mode: "split",
       baseUrl: "https://tessa-cloud-api-server.vercel.app/api",
       clean: true,
-      prettier: true,
+  
       override: {
         fetch: {
           includeHttpResponseReturnType: false,
@@ -54,7 +54,7 @@ export default defineConfig({
       schemas: { path: "generated/types", type: "typescript" },
       mode: "split",
       clean: true,
-      prettier: true,
+      
       override: {
         zod: {
           coerce: {

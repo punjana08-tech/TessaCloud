@@ -54,7 +54,7 @@ export const getHealthCheckUrl = () => {
 
 
 
-  return `https://tessa-cloud-api-server.vercel.app/api/healthz`
+  return `https://localhost:3000/api/healthz`
 }
 
 export const healthCheck = async ( options?: RequestInit): Promise<HealthStatus> => {
@@ -74,7 +74,7 @@ export const healthCheck = async ( options?: RequestInit): Promise<HealthStatus>
 
 export const getHealthCheckQueryKey = () => {
     return [
-    `https://tessa-cloud-api-server.vercel.app/api/healthz`
+    `https://localhost:3000/api/healthz`
     ] as const;
     }
 
@@ -131,7 +131,7 @@ export const getGetDashboardSummaryUrl = () => {
 
 
 
-  return `https://tessa-cloud-api-server.vercel.app/api/dashboard/summary`
+  return `https://localhost:3000/api/dashboard/summary`
 }
 
 export const getDashboardSummary = async ( options?: RequestInit): Promise<DashboardSummary> => {
@@ -151,7 +151,7 @@ export const getDashboardSummary = async ( options?: RequestInit): Promise<Dashb
 
 export const getGetDashboardSummaryQueryKey = () => {
     return [
-    `https://tessa-cloud-api-server.vercel.app/api/dashboard/summary`
+    `https://localhost:3000/api/dashboard/summary`
     ] as const;
     }
 
@@ -208,7 +208,7 @@ export const getGetDepartmentAssetReportUrl = () => {
 
 
 
-  return `https://tessa-cloud-api-server.vercel.app/api/reports/department-assets`
+  return `https://localhost:3000/api/reports/department-assets`
 }
 
 export const getDepartmentAssetReport = async ( options?: RequestInit): Promise<DepartmentAssetReport[]> => {
@@ -228,7 +228,7 @@ export const getDepartmentAssetReport = async ( options?: RequestInit): Promise<
 
 export const getGetDepartmentAssetReportQueryKey = () => {
     return [
-    `https://tessa-cloud-api-server.vercel.app/api/reports/department-assets`
+    `https://localhost:3000/api/reports/department-assets`
     ] as const;
     }
 
@@ -285,7 +285,7 @@ export const getGetRecentActivitiesUrl = () => {
 
 
 
-  return `https://tessa-cloud-api-server.vercel.app/api/activities/recent`
+  return `https://localhost:3000/api/activities/recent`
 }
 
 export const getRecentActivities = async ( options?: RequestInit): Promise<ActivityLog[]> => {
@@ -305,7 +305,7 @@ export const getRecentActivities = async ( options?: RequestInit): Promise<Activ
 
 export const getGetRecentActivitiesQueryKey = () => {
     return [
-    `https://tessa-cloud-api-server.vercel.app/api/activities/recent`
+    `https://localhost:3000/api/activities/recent`
     ] as const;
     }
 
@@ -362,7 +362,7 @@ export const getGetEmployeesUrl = () => {
 
 
 
-  return `https://tessa-cloud-api-server.vercel.app/api/employees`
+  return `https://localhost:3000/api/employees`
 }
 
 export const getEmployees = async ( options?: RequestInit): Promise<Employee[]> => {
@@ -382,7 +382,7 @@ export const getEmployees = async ( options?: RequestInit): Promise<Employee[]> 
 
 export const getGetEmployeesQueryKey = () => {
     return [
-    `https://tessa-cloud-api-server.vercel.app/api/employees`
+    `https://localhost:3000/api/employees`
     ] as const;
     }
 
@@ -439,7 +439,7 @@ export const getCreateEmployeeUrl = () => {
 
 
 
-  return `https://tessa-cloud-api-server.vercel.app/api/employees`
+  return `https://localhost:3000/api/employees`
 }
 
 export const createEmployee = async (createEmployeeRequest: CreateEmployeeRequest, options?: RequestInit): Promise<Employee> => {
@@ -510,7 +510,7 @@ export const getGetEmployeeUrl = (employeeId: number,) => {
 
 
 
-  return `https://tessa-cloud-api-server.vercel.app/api/employees/${employeeId}`
+  return `https://localhost:3000/api/employees/${employeeId}`
 }
 
 export const getEmployee = async (employeeId: number, options?: RequestInit): Promise<Employee> => {
@@ -530,7 +530,7 @@ export const getEmployee = async (employeeId: number, options?: RequestInit): Pr
 
 export const getGetEmployeeQueryKey = (employeeId: number,) => {
     return [
-    `https://tessa-cloud-api-server.vercel.app/api/employees/${employeeId}`
+    `https://localhost:3000/api/employees/${employeeId}`
     ] as const;
     }
 
@@ -587,7 +587,7 @@ export const getUpdateEmployeeUrl = (employeeId: number,) => {
 
 
 
-  return `https://tessa-cloud-api-server.vercel.app/api/employees/${employeeId}`
+  return `https://localhost:3000/api/employees/${employeeId}`
 }
 
 export const updateEmployee = async (employeeId: number,
@@ -659,7 +659,7 @@ export const getDeleteEmployeeUrl = (employeeId: number,) => {
 
 
 
-  return `https://tessa-cloud-api-server.vercel.app/api/employees/${employeeId}`
+  return `https://localhost:3000/api/employees/${employeeId}`
 }
 
 export const deleteEmployee = async (employeeId: number, options?: RequestInit): Promise<void> => {
@@ -729,7 +729,7 @@ export const getDeactivateEmployeeUrl = (employeeId: number,) => {
 
 
 
-  return `https://tessa-cloud-api-server.vercel.app/api/employees/${employeeId}/deactivate`
+  return `https://localhost:3000/api/employees/${employeeId}/deactivate`
 }
 
 export const deactivateEmployee = async (employeeId: number, options?: RequestInit): Promise<Employee> => {
@@ -799,7 +799,7 @@ export const getGetEmployeeAssignmentsUrl = (employeeId: number,) => {
 
 
 
-  return `https://tessa-cloud-api-server.vercel.app/api/employees/${employeeId}/assignments`
+  return `https://localhost:3000/api/employees/${employeeId}/assignments`
 }
 
 export const getEmployeeAssignments = async (employeeId: number, options?: RequestInit): Promise<Assignment[]> => {
@@ -819,7 +819,7 @@ export const getEmployeeAssignments = async (employeeId: number, options?: Reque
 
 export const getGetEmployeeAssignmentsQueryKey = (employeeId: number,) => {
     return [
-    `https://tessa-cloud-api-server.vercel.app/api/employees/${employeeId}/assignments`
+    `https://localhost:3000/api/employees/${employeeId}/assignments`
     ] as const;
     }
 
@@ -876,7 +876,7 @@ export const getGetAssetsUrl = () => {
 
 
 
-  return `https://tessa-cloud-api-server.vercel.app/api/assets`
+  return `https://localhost:3000/api/assets`
 }
 
 export const getAssets = async ( options?: RequestInit): Promise<Asset[]> => {
@@ -896,7 +896,7 @@ export const getAssets = async ( options?: RequestInit): Promise<Asset[]> => {
 
 export const getGetAssetsQueryKey = () => {
     return [
-    `https://tessa-cloud-api-server.vercel.app/api/assets`
+    `https://localhost:3000/api/assets`
     ] as const;
     }
 
@@ -953,7 +953,7 @@ export const getCreateAssetUrl = () => {
 
 
 
-  return `https://tessa-cloud-api-server.vercel.app/api/assets`
+  return `https://localhost:3000/api/assets`
 }
 
 export const createAsset = async (createAssetRequest: CreateAssetRequest, options?: RequestInit): Promise<Asset> => {
@@ -1024,7 +1024,7 @@ export const getGetAssetUrl = (assetId: number,) => {
 
 
 
-  return `https://tessa-cloud-api-server.vercel.app/api/assets/${assetId}`
+  return `https://localhost:3000/api/assets/${assetId}`
 }
 
 export const getAsset = async (assetId: number, options?: RequestInit): Promise<Asset> => {
@@ -1044,7 +1044,7 @@ export const getAsset = async (assetId: number, options?: RequestInit): Promise<
 
 export const getGetAssetQueryKey = (assetId: number,) => {
     return [
-    `https://tessa-cloud-api-server.vercel.app/api/assets/${assetId}`
+    `https://localhost:3000/api/assets/${assetId}`
     ] as const;
     }
 
@@ -1101,7 +1101,7 @@ export const getUpdateAssetUrl = (assetId: number,) => {
 
 
 
-  return `https://tessa-cloud-api-server.vercel.app/api/assets/${assetId}`
+  return `https://localhost:3000/api/assets/${assetId}`
 }
 
 export const updateAsset = async (assetId: number,
@@ -1173,7 +1173,7 @@ export const getDeleteAssetUrl = (assetId: number,) => {
 
 
 
-  return `https://tessa-cloud-api-server.vercel.app/api/assets/${assetId}`
+  return `https://localhost:3000/api/assets/${assetId}`
 }
 
 export const deleteAsset = async (assetId: number, options?: RequestInit): Promise<void> => {
@@ -1243,7 +1243,7 @@ export const getMarkAssetBrokenUrl = (assetId: number,) => {
 
 
 
-  return `https://tessa-cloud-api-server.vercel.app/api/assets/${assetId}/mark-broken`
+  return `https://localhost:3000/api/assets/${assetId}/mark-broken`
 }
 
 export const markAssetBroken = async (assetId: number, options?: RequestInit): Promise<Asset> => {
@@ -1313,7 +1313,7 @@ export const getRetireAssetUrl = (assetId: number,) => {
 
 
 
-  return `https://tessa-cloud-api-server.vercel.app/api/assets/${assetId}/retire`
+  return `https://localhost:3000/api/assets/${assetId}/retire`
 }
 
 export const retireAsset = async (assetId: number, options?: RequestInit): Promise<Asset> => {
@@ -1383,7 +1383,7 @@ export const getGetAssetAssignmentsUrl = (assetId: number,) => {
 
 
 
-  return `https://tessa-cloud-api-server.vercel.app/api/assets/${assetId}/assignments`
+  return `https://localhost:3000/api/assets/${assetId}/assignments`
 }
 
 export const getAssetAssignments = async (assetId: number, options?: RequestInit): Promise<Assignment[]> => {
@@ -1403,7 +1403,7 @@ export const getAssetAssignments = async (assetId: number, options?: RequestInit
 
 export const getGetAssetAssignmentsQueryKey = (assetId: number,) => {
     return [
-    `https://tessa-cloud-api-server.vercel.app/api/assets/${assetId}/assignments`
+    `https://localhost:3000/api/assets/${assetId}/assignments`
     ] as const;
     }
 
@@ -1460,7 +1460,7 @@ export const getGetAssignmentsUrl = () => {
 
 
 
-  return `https://tessa-cloud-api-server.vercel.app/api/assignments`
+  return `https://localhost:3000/api/assignments`
 }
 
 export const getAssignments = async ( options?: RequestInit): Promise<Assignment[]> => {
@@ -1480,7 +1480,7 @@ export const getAssignments = async ( options?: RequestInit): Promise<Assignment
 
 export const getGetAssignmentsQueryKey = () => {
     return [
-    `https://tessa-cloud-api-server.vercel.app/api/assignments`
+    `https://localhost:3000/api/assignments`
     ] as const;
     }
 
@@ -1537,7 +1537,7 @@ export const getCreateAssignmentUrl = () => {
 
 
 
-  return `https://tessa-cloud-api-server.vercel.app/api/assignments`
+  return `https://localhost:3000/api/assignments`
 }
 
 export const createAssignment = async (createAssignmentRequest: CreateAssignmentRequest, options?: RequestInit): Promise<Assignment> => {
@@ -1608,7 +1608,7 @@ export const getGetActiveAssignmentsUrl = () => {
 
 
 
-  return `https://tessa-cloud-api-server.vercel.app/api/assignments/active`
+  return `https://localhost:3000/api/assignments/active`
 }
 
 export const getActiveAssignments = async ( options?: RequestInit): Promise<Assignment[]> => {
@@ -1628,7 +1628,7 @@ export const getActiveAssignments = async ( options?: RequestInit): Promise<Assi
 
 export const getGetActiveAssignmentsQueryKey = () => {
     return [
-    `https://tessa-cloud-api-server.vercel.app/api/assignments/active`
+    `https://localhost:3000/api/assignments/active`
     ] as const;
     }
 
@@ -1685,7 +1685,7 @@ export const getReturnAssignmentUrl = (assignmentId: number,) => {
 
 
 
-  return `https://tessa-cloud-api-server.vercel.app/api/assignments/${assignmentId}/return`
+  return `https://localhost:3000/api/assignments/${assignmentId}/return`
 }
 
 export const returnAssignment = async (assignmentId: number, options?: RequestInit): Promise<Assignment> => {
@@ -1755,7 +1755,7 @@ export const getGetMaintenanceTicketsUrl = () => {
 
 
 
-  return `https://tessa-cloud-api-server.vercel.app/api/maintenance`
+  return `https://localhost:3000/api/maintenance`
 }
 
 export const getMaintenanceTickets = async ( options?: RequestInit): Promise<MaintenanceTicket[]> => {
@@ -1775,7 +1775,7 @@ export const getMaintenanceTickets = async ( options?: RequestInit): Promise<Mai
 
 export const getGetMaintenanceTicketsQueryKey = () => {
     return [
-    `https://tessa-cloud-api-server.vercel.app/api/maintenance`
+    `https://localhost:3000/api/maintenance`
     ] as const;
     }
 
@@ -1832,7 +1832,7 @@ export const getCreateMaintenanceTicketUrl = () => {
 
 
 
-  return `https://tessa-cloud-api-server.vercel.app/api/maintenance`
+  return `https://localhost:3000/api/maintenance`
 }
 
 export const createMaintenanceTicket = async (createMaintenanceTicketRequest: CreateMaintenanceTicketRequest, options?: RequestInit): Promise<MaintenanceTicket> => {
@@ -1903,7 +1903,7 @@ export const getCloseMaintenanceTicketUrl = (ticketId: number,) => {
 
 
 
-  return `https://tessa-cloud-api-server.vercel.app/api/maintenance/${ticketId}/close`
+  return `https://localhost:3000/api/maintenance/${ticketId}/close`
 }
 
 export const closeMaintenanceTicket = async (ticketId: number, options?: RequestInit): Promise<MaintenanceTicket> => {
