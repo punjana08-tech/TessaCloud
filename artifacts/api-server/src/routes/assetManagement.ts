@@ -175,7 +175,7 @@ router.post("/employees", (req, res) => {
   const employee: Employee = { employee_id: nextEmployeeId++, employee_code: req.body.employee_code, employee_name: req.body.employee_name, email: req.body.email, phone_number: req.body.phone_number, department_name: req.body.department_name, designation: req.body.designation, joining_date: req.body.joining_date, employment_status: req.body.employment_status ?? "Active" };
   employees.push(employee);
   addActivity("Employee Created", "employee", employee.employee_id, `${employee.employee_name} added to employee records.`);
-  res.status(201).json(employee);
+  return res.status(201).json(employee);
 });
 
 router.put("/employees/:employee_id", (req, res) => {
@@ -222,7 +222,7 @@ router.post("/assets", (req, res) => {
   const asset: Asset = { asset_id: nextAssetId++, asset_tag: req.body.asset_tag, asset_name: req.body.asset_name, category: req.body.category, serial_number: req.body.serial_number, purchase_date: req.body.purchase_date, purchase_cost: req.body.purchase_cost, condition_status: req.body.condition_status ?? "Good", asset_status: req.body.asset_status ?? "Available", current_location: req.body.current_location ?? "Asset Store Room" };
   assets.push(asset);
   addActivity("Asset Created", "asset", asset.asset_id, `${asset.asset_name} registered in inventory.`);
-  res.status(201).json(asset);
+  return res.status(201).json(asset);
 });
 
 router.put("/assets/:asset_id", (req, res) => {
