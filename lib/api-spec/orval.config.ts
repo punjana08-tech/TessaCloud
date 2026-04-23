@@ -26,7 +26,7 @@ export default defineConfig({
       target: "generated",
       client: "react-query",
       mode: "split",
-      baseUrl: "http://localhost:3000/api",
+      baseUrl: "https://tessa-cloud-api-server.vercel.app/api",
       clean: true,
       prettier: true,
       override: {
