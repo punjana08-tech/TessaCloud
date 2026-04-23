@@ -1,0 +1,105 @@
+Asset Tracker - Atomic API Design Sheet
+
+Feature: Health check
+API Endpoint: GET /api/healthz
+Database Action: No database change. Return server status.
+
+Feature: View dashboard summary
+API Endpoint: GET /api/dashboard/summary
+Database Action: SELECT counts from employees, assets, and assignments tables grouped by status.
+
+Feature: View department-wise asset report
+API Endpoint: GET /api/reports/department-assets
+Database Action: SELECT employees joined with active assignments and assets, grouped by department.
+
+Feature: View recent activity
+API Endpoint: GET /api/activities/recent
+Database Action: SELECT latest rows from activity_logs ordered by created_at descending.
+
+Feature: View all employees
+API Endpoint: GET /api/employees
+Database Action: SELECT all rows from employees ordered by employee_name.
+
+Feature: View one employee
+API Endpoint: GET /api/employees/{employee_id}
+Database Action: SELECT one row from employees where employee_id matches.
+
+Feature: Add a new employee
+API Endpoint: POST /api/employees
+Database Action: INSERT a new row into employees with employee_code, employee_name, email, phone_number, department, designation, joining_date, and employment_status.
+
+Feature: Update employee details
+API Endpoint: PUT /api/employees/{employee_id}
+Database Action: UPDATE employees row matching employee_id with changed fields.
+
+Feature: Deactivate employee
+API Endpoint: PATCH /api/employees/{employee_id}/deactivate
+Database Action: UPDATE employees set employment_status='Inactive'.
+
+Feature: Delete employee record
+API Endpoint: DELETE /api/employees/{employee_id}
+Database Action: DELETE from employees where employee_id matches, only if no active assignment exists.
+
+Feature: View all assets
+API Endpoint: GET /api/assets
+Database Action: SELECT all rows from assets ordered by asset_tag.
+
+Feature: View one asset
+API Endpoint: GET /api/assets/{asset_id}
+Database Action: SELECT one row from assets where asset_id matches.
+
+Feature: Add a new asset
+API Endpoint: POST /api/assets
+Database Action: INSERT a new row into assets with asset_tag, asset_name, category, serial_number, purchase_date, purchase_cost, condition_status, asset_status, and current_location.
+
+Feature: Update asset details
+API Endpoint: PUT /api/assets/{asset_id}
+Database Action: UPDATE assets row matching asset_id with changed fields.
+
+Feature: Mark asset as broken
+API Endpoint: PATCH /api/assets/{asset_id}/mark-broken
+Database Action: UPDATE assets set asset_status='Broken' and condition_status='Damaged'; INSERT row into activity_logs.
+
+Feature: Retire an asset
+API Endpoint: PATCH /api/assets/{asset_id}/retire
+Database Action: UPDATE assets set asset_status='Retired'; INSERT row into activity_logs.
+
+Feature: Delete asset record
+API Endpoint: DELETE /api/assets/{asset_id}
+Database Action: DELETE from assets where asset_id matches, only if no active assignment exists.
+
+Feature: View all assignments
+API Endpoint: GET /api/assignments
+Database Action: SELECT all rows from assignments ordered by assigned_at descending.
+
+Feature: View active assignments
+API Endpoint: GET /api/assignments/active
+Database Action: SELECT rows from assignments where assignment_status='Active'.
+
+Feature: Assign asset to employee
+API Endpoint: POST /api/assignments
+Database Action: INSERT into assignments linking employee_id and asset_id; UPDATE assets set asset_status='Assigned'; INSERT row into activity_logs.
+
+Feature: Return asset from employee
+API Endpoint: PATCH /api/assignments/{assignment_id}/return
+Database Action: UPDATE assignments set returned_at and assignment_status='Returned'; UPDATE assets set asset_status='Available'; INSERT row into activity_logs.
+
+Feature: View assignment history for one asset
+API Endpoint: GET /api/assets/{asset_id}/assignments
+Database Action: SELECT assignments where asset_id matches ordered by assigned_at descending.
+
+Feature: View assignment history for one employee
+API Endpoint: GET /api/employees/{employee_id}/assignments
+Database Action: SELECT assignments where employee_id matches ordered by assigned_at descending.
+
+Feature: View maintenance tickets
+API Endpoint: GET /api/maintenance
+Database Action: SELECT all rows from maintenance_tickets ordered by reported_at descending.
+
+Feature: Create maintenance ticket
+API Endpoint: POST /api/maintenance
+Database Action: INSERT into maintenance_tickets with asset_id, issue_title, issue_description, reported_by_employee_id, priority, ticket_status; UPDATE assets set asset_status='Maintenance'.
+
+Feature: Close maintenance ticket
+API Endpoint: PATCH /api/maintenance/{ticket_id}/close
+Database Action: UPDATE maintenance_tickets set ticket_status='Closed', resolved_at, resolution_notes; UPDATE related asset condition and status.

@@ -1,0 +1,5 @@
+services:
+  hello-world:
+    build: .
+    image: asset-tracker-hello-world:latest
+    container_name: asset-tracker-hello-world

@@ -1,0 +1,556 @@
+openapi: 3.1.0
+info:
+  # Do not change the title, if the title changes, the import paths will be broken
+  title: Api
+  version: 1.0.0
+  description: Asset Tracker API specification
+servers:
+  - url: /api
+    description: Base API path
+tags:
+  - name: health
+    description: Health operations
+  - name: dashboard
+    description: Dashboard and reporting operations
+  - name: employees
+    description: Employee operations
+  - name: assets
+    description: Asset operations
+  - name: assignments
+    description: Assignment operations
+  - name: maintenance
+    description: Maintenance operations
+paths:
+  /healthz:
+    get:
+      operationId: healthCheck
+      tags: [health]
+      summary: Health check
+      responses:
+        "200":
+          description: Healthy
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HealthStatus"
+  /dashboard/summary:
+    get:
+      operationId: getDashboardSummary
+      tags: [dashboard]
+      summary: View dashboard summary
+      responses:
+        "200":
+          description: Dashboard summary
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DashboardSummary"
+  /reports/department-assets:
+    get:
+      operationId: getDepartmentAssetReport
+      tags: [dashboard]
+      summary: View department-wise asset report
+      responses:
+        "200":
+          description: Department asset report
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/DepartmentAssetReport"
+  /activities/recent:
+    get:
+      operationId: getRecentActivities
+      tags: [dashboard]
+      summary: View recent activity
+      responses:
+        "200":
+          description: Recent activity list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ActivityLog"
+  /employees:
+    get:
+      operationId: getEmployees
+      tags: [employees]
+      summary: View all employees
+      responses:
+        "200":
+          description: Employee list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Employee"
+    post:
+      operationId: createEmployee
+      tags: [employees]
+      summary: Add a new employee
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateEmployeeRequest"
+      responses:
+        "201":
+          description: Employee created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Employee"
+  /employees/{employee_id}:
+    get:
+      operationId: getEmployee
+      tags: [employees]
+      summary: View one employee
+      parameters:
+        - $ref: "#/components/parameters/EmployeeId"
+      responses:
+        "200":
+          description: Employee
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Employee"
+    put:
+      operationId: updateEmployee
+      tags: [employees]
+      summary: Update employee details
+      parameters:
+        - $ref: "#/components/parameters/EmployeeId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateEmployeeRequest"
+      responses:
+        "200":
+          description: Employee updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Employee"
+    delete:
+      operationId: deleteEmployee
+      tags: [employees]
+      summary: Delete employee record
+      parameters:
+        - $ref: "#/components/parameters/EmployeeId"
+      responses:
+        "204":
+          description: Employee deleted
+  /employees/{employee_id}/deactivate:
+    patch:
+      operationId: deactivateEmployee
+      tags: [employees]
+      summary: Deactivate employee
+      parameters:
+        - $ref: "#/components/parameters/EmployeeId"
+      responses:
+        "200":
+          description: Employee deactivated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Employee"
+  /employees/{employee_id}/assignments:
+    get:
+      operationId: getEmployeeAssignments
+      tags: [employees]
+      summary: View employee assignment history
+      parameters:
+        - $ref: "#/components/parameters/EmployeeId"
+      responses:
+        "200":
+          description: Employee assignments
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Assignment"
+  /assets:
+    get:
+      operationId: getAssets
+      tags: [assets]
+      summary: View all assets
+      responses:
+        "200":
+          description: Asset list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Asset"
+    post:
+      operationId: createAsset
+      tags: [assets]
+      summary: Add a new asset
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateAssetRequest"
+      responses:
+        "201":
+          description: Asset created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Asset"
+  /assets/{asset_id}:
+    get:
+      operationId: getAsset
+      tags: [assets]
+      summary: View one asset
+      parameters:
+        - $ref: "#/components/parameters/AssetId"
+      responses:
+        "200":
+          description: Asset
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Asset"
+    put:
+      operationId: updateAsset
+      tags: [assets]
+      summary: Update asset details
+      parameters:
+        - $ref: "#/components/parameters/AssetId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateAssetRequest"
+      responses:
+        "200":
+          description: Asset updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Asset"
+    delete:
+      operationId: deleteAsset
+      tags: [assets]
+      summary: Delete asset record
+      parameters:
+        - $ref: "#/components/parameters/AssetId"
+      responses:
+        "204":
+          description: Asset deleted
+  /assets/{asset_id}/mark-broken:
+    patch:
+      operationId: markAssetBroken
+      tags: [assets]
+      summary: Mark asset as broken
+      parameters:
+        - $ref: "#/components/parameters/AssetId"
+      responses:
+        "200":
+          description: Asset marked broken
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Asset"
+  /assets/{asset_id}/retire:
+    patch:
+      operationId: retireAsset
+      tags: [assets]
+      summary: Retire an asset
+      parameters:
+        - $ref: "#/components/parameters/AssetId"
+      responses:
+        "200":
+          description: Asset retired
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Asset"
+  /assets/{asset_id}/assignments:
+    get:
+      operationId: getAssetAssignments
+      tags: [assets]
+      summary: View asset assignment history
+      parameters:
+        - $ref: "#/components/parameters/AssetId"
+      responses:
+        "200":
+          description: Asset assignments
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Assignment"
+  /assignments:
+    get:
+      operationId: getAssignments
+      tags: [assignments]
+      summary: View all assignments
+      responses:
+        "200":
+          description: Assignment list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Assignment"
+    post:
+      operationId: createAssignment
+      tags: [assignments]
+      summary: Assign asset to employee
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateAssignmentRequest"
+      responses:
+        "201":
+          description: Assignment created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Assignment"
+  /assignments/active:
+    get:
+      operationId: getActiveAssignments
+      tags: [assignments]
+      summary: View active assignments
+      responses:
+        "200":
+          description: Active assignment list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Assignment"
+  /assignments/{assignment_id}/return:
+    patch:
+      operationId: returnAssignment
+      tags: [assignments]
+      summary: Return asset from employee
+      parameters:
+        - $ref: "#/components/parameters/AssignmentId"
+      responses:
+        "200":
+          description: Assignment returned
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Assignment"
+  /maintenance:
+    get:
+      operationId: getMaintenanceTickets
+      tags: [maintenance]
+      summary: View maintenance tickets
+      responses:
+        "200":
+          description: Maintenance tickets
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/MaintenanceTicket"
+    post:
+      operationId: createMaintenanceTicket
+      tags: [maintenance]
+      summary: Create maintenance ticket
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateMaintenanceTicketRequest"
+      responses:
+        "201":
+          description: Maintenance ticket created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MaintenanceTicket"
+  /maintenance/{ticket_id}/close:
+    patch:
+      operationId: closeMaintenanceTicket
+      tags: [maintenance]
+      summary: Close maintenance ticket
+      parameters:
+        - name: ticket_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Maintenance ticket closed
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MaintenanceTicket"
+components:
+  parameters:
+    EmployeeId:
+      name: employee_id
+      in: path
+      required: true
+      schema:
+        type: integer
+    AssetId:
+      name: asset_id
+      in: path
+      required: true
+      schema:
+        type: integer
+    AssignmentId:
+      name: assignment_id
+      in: path
+      required: true
+      schema:
+        type: integer
+  schemas:
+    HealthStatus:
+      type: object
+      properties:
+        status:
+          type: string
+      required: [status]
+    Employee:
+      type: object
+      properties:
+        employee_id: { type: integer }
+        employee_code: { type: string }
+        employee_name: { type: string }
+        email: { type: string }
+        phone_number: { type: string }
+        department_name: { type: string }
+        designation: { type: string }
+        joining_date: { type: string }
+        employment_status: { type: string }
+      required: [employee_id, employee_code, employee_name, email, department_name, designation, joining_date, employment_status]
+    CreateEmployeeRequest:
+      type: object
+      properties:
+        employee_code: { type: string }
+        employee_name: { type: string }
+        email: { type: string }
+        phone_number: { type: string }
+        department_name: { type: string }
+        designation: { type: string }
+        joining_date: { type: string }
+        employment_status: { type: string }
+      required: [employee_code, employee_name, email, department_name, designation, joining_date]
+    Asset:
+      type: object
+      properties:
+        asset_id: { type: integer }
+        asset_tag: { type: string }
+        asset_name: { type: string }
+        category: { type: string }
+        serial_number: { type: string }
+        purchase_date: { type: string }
+        purchase_cost: { type: number }
+        condition_status: { type: string }
+        asset_status: { type: string }
+        current_location: { type: string }
+      required: [asset_id, asset_tag, asset_name, category, condition_status, asset_status]
+    CreateAssetRequest:
+      type: object
+      properties:
+        asset_tag: { type: string }
+        asset_name: { type: string }
+        category: { type: string }
+        serial_number: { type: string }
+        purchase_date: { type: string }
+        purchase_cost: { type: number }
+        condition_status: { type: string }
+        asset_status: { type: string }
+        current_location: { type: string }
+      required: [asset_tag, asset_name, category]
+    Assignment:
+      type: object
+      properties:
+        assignment_id: { type: integer }
+        employee_id: { type: integer }
+        asset_id: { type: integer }
+        assigned_by_employee_id: { type: integer }
+        assigned_at: { type: string }
+        expected_return_date: { type: string }
+        returned_at: { type: string }
+        assignment_status: { type: string }
+        assignment_notes: { type: string }
+      required: [assignment_id, employee_id, asset_id, assigned_at, assignment_status]
+    CreateAssignmentRequest:
+      type: object
+      properties:
+        employee_id: { type: integer }
+        asset_id: { type: integer }
+        assigned_by_employee_id: { type: integer }
+        expected_return_date: { type: string }
+        assignment_notes: { type: string }
+      required: [employee_id, asset_id]
+    MaintenanceTicket:
+      type: object
+      properties:
+        ticket_id: { type: integer }
+        asset_id: { type: integer }
+        issue_title: { type: string }
+        issue_description: { type: string }
+        reported_by_employee_id: { type: integer }
+        priority: { type: string }
+        ticket_status: { type: string }
+        reported_at: { type: string }
+        resolved_at: { type: string }
+        resolution_notes: { type: string }
+      required: [ticket_id, asset_id, issue_title, priority, ticket_status, reported_at]
+    CreateMaintenanceTicketRequest:
+      type: object
+      properties:
+        asset_id: { type: integer }
+        issue_title: { type: string }
+        issue_description: { type: string }
+        reported_by_employee_id: { type: integer }
+        priority: { type: string }
+      required: [asset_id, issue_title]
+    DashboardSummary:
+      type: object
+      properties:
+        total_employees: { type: integer }
+        active_employees: { type: integer }
+        total_assets: { type: integer }
+        available_assets: { type: integer }
+        assigned_assets: { type: integer }
+        maintenance_assets: { type: integer }
+        broken_assets: { type: integer }
+        active_assignments: { type: integer }
+      required: [total_employees, active_employees, total_assets, available_assets, assigned_assets, maintenance_assets, broken_assets, active_assignments]
+    DepartmentAssetReport:
+      type: object
+      properties:
+        department_name: { type: string }
+        assigned_asset_count: { type: integer }
+      required: [department_name, assigned_asset_count]
+    ActivityLog:
+      type: object
+      properties:
+        activity_id: { type: integer }
+        actor_employee_id: { type: integer }
+        activity_type: { type: string }
+        entity_type: { type: string }
+        entity_id: { type: integer }
+        activity_description: { type: string }
+        created_at: { type: string }
+      required: [activity_id, activity_type, entity_type, entity_id, activity_description, created_at]

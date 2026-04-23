@@ -1,0 +1,54 @@
+Asset Tracker - Feature List
+
+Brief understanding of client's requirements
+The client needs an industrial-grade asset management software for a company with around 1000 employees and a dedicated HR department. The main goal is to track company items such as laptops, phones, monitors, ID cards, accessories, and other equipment, and clearly know which item is currently assigned to which employee. The product should support employee records, asset inventory, assignment history, returns, damaged/broken asset tracking, and HR-friendly reporting.
+
+Creative freedoms taken
+1. Product name: Asset Tracker.
+2. Scope: Expanded the simple tracking request into a practical HR asset-control system.
+3. User groups: Assumed HR admins and asset managers will operate the software.
+4. Asset lifecycle: Added states such as Available, Assigned, Maintenance, Broken, Retired, and Lost.
+5. Accountability: Added assignment history so every asset movement can be audited.
+6. Maintenance tracking: Added repair and issue records for damaged assets.
+7. Dashboard: Added summaries for quick HR and management review.
+
+Assumptions made
+1. The company has approximately 1000 employees.
+2. Each employee can hold multiple assets at the same time.
+3. Each asset can be assigned to only one employee at a time.
+4. HR maintains employee records and may need department-wise visibility.
+5. Asset managers need to add, update, assign, return, and mark assets.
+6. The system should preserve assignment history even after an asset is returned.
+7. Dummy data is acceptable for initial database design and API testing.
+8. Login and role-based permissions can be added later if required by the client.
+
+Feature list
+1. View all employees - Display a searchable list of company employees.
+2. Add a new employee - Store a new employee with department, designation, email, and status.
+3. Update employee details - Edit employee information when HR records change.
+4. Deactivate employee - Mark an employee inactive when they leave the company.
+5. View all assets - Display all company-owned assets with category, serial number, condition, and status.
+6. Add a new asset - Register a newly purchased item in inventory.
+7. Update asset details - Modify asset category, value, location, or condition.
+8. Mark asset as broken - Change asset status and condition when it is damaged.
+9. Retire asset - Mark old or unusable items as retired.
+10. Assign asset to employee - Link an available asset to an employee.
+11. Return asset from employee - End an active assignment and make the asset available again.
+12. View assignment history - See all past and current assignments for audit purposes.
+13. Create maintenance ticket - Record repair or issue information for broken assets.
+14. Close maintenance ticket - Mark repair work completed and update the asset condition.
+15. Dashboard summary - Show total employees, total assets, assigned assets, available assets, broken assets, and active assignments.
+16. Department-wise asset report - Show how many assets are assigned in each department.
+17. Recent activity - Show recent assignments, returns, and maintenance actions.
+
+Questions for next client meeting
+1. Which departments should be included in the first version?
+2. What asset categories are most important for launch?
+3. Should each asset have a barcode or QR code?
+4. Does HR need role-based access, or will all admins have the same permissions initially?
+5. Should employees be able to view their assigned assets themselves?
+6. What reports are required monthly or annually?
+7. Should the system track asset purchase cost, warranty expiry, and vendor information?
+8. What should happen when an employee leaves without returning an asset?
+9. Should asset approvals be required before assignment?
+10. Is integration with existing HR software required in the future?
